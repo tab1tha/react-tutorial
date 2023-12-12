@@ -7,15 +7,18 @@
         <script type="text/jsx">
             const app = document.getElementById("app");
 
-            function Header(){
-                return <h1>build.test.learn</h1>;
+            function Header({title}){
+                {/* curly braces are a way to enter javascriptland from jsxland. use when calling variables within jsx's html.
+                All js expressions that evaluate to a single value can be put in jsx curly braces.*/}
+                return <h1>{title}</h1>;
             }
 
             function HomePage(){
                 return (
                     <div>
                         {/* nesting the header component */}
-                        <Header />
+                        <Header title="React" />
+                        <Header title="A new title" />
                     </div>
                     );
             }
