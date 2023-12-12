@@ -1,40 +1,27 @@
-<html>
-    <body>
-        <div id="app"></div>
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-        <script type="text/jsx">
-            const app = document.getElementById("app");
+import { useState } from "react";
 
-            function Header({title}){
-                {/* curly braces are a way to enter javascriptland from jsxland. use when calling variables within jsx's html.
-                All js expressions that evaluate to a single value can be put in jsx curly braces.*/}
-                return <h1>{title}</h1>;
-            }
+function Header({title}){
+    return <h1>{title? title : "Default title"}</h1>;
+}
 
-            function HomePage(){
-                const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"];
-                const [likes, setLikes] = React.useState(0);
+function HomePage(){
+    const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"];
+    const [likes, setLikes] = useState(0);
 
-                function handleClick() {
-                    setLikes(likes + 1);
-                  }
-                return (
-                    <div>
-                        {/* nesting the header component */}
-                        <Header title="build.test.learn" />
-                        <ul>
-                            {names.map((name)=>{
-                                return <li key={name}>{name}</li>;
-                            })}
-                        </ul>  
-                        <button onClick={handleClick}>Like({likes})</button>                          
-                    </div>
-                    );
-            }
-
-            ReactDOM.render(<HomePage />, app);
-        </script>
-    </body>
-</html>
+    function handleClick() {
+        setLikes(likes + 1);
+        }
+    return (
+        <div>
+            {/* nesting the header component */}
+            <Header title="build.test.learn" />
+            <ul>
+                {names.map((name)=>{
+                    return <li key={name}>{name}</li>;
+                })}
+            </ul>  
+            
+            <button onClick={handleClick}>Like({likes})</button>                          
+        </div>
+        );
+}
